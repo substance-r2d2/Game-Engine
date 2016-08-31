@@ -46,6 +46,10 @@ void MainGame::initSystems()
 	GLenum error = glewInit();
 	if (error != GLEW_OK)
 		fatalError("glew Init error!");
+
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 }
 
 void MainGame::gameLoop()
@@ -53,6 +57,7 @@ void MainGame::gameLoop()
 	while (_gameState != GameState::EXIT)
 	{
 		processInput();
+		drawGame();
 	}
 }
 
@@ -74,4 +79,12 @@ void MainGame::processInput()
 			break;
 		}
 	}
+}
+
+void MainGame::drawGame()
+{
+	glClearDepth(1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	SDL_GL_SwapWindow(_window);
 }
