@@ -28,6 +28,8 @@ void MainGame::run()
 {
 	initSystems();
 
+	_sprite.init(-1.0f, -1.0f, 1.0f, 1.0f);
+
 	gameLoop();
 }
 
@@ -85,6 +87,8 @@ void MainGame::drawGame()
 {
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	_sprite.draw();
 
 	SDL_GL_SwapWindow(_window);
 }
